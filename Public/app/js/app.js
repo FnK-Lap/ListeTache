@@ -18,6 +18,10 @@ app.config(['$routeProvider',
             when('/addtask', {
                 templateUrl: 'templates/users/addtask.html',
                 controller: 'addtaskController'
+            }).
+            when('/addlist', {
+                templateUrl: 'templates/users/addlist.html',
+                controller: 'addlistController'
             })
 
     }
