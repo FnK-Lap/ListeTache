@@ -32,10 +32,15 @@ app.use(passport.session());
 
 
 app.use('/api', router); // /api for all routes
-app.use(express.static(__dirname + '/public/views'));
+app.use(express.static(__dirname + '/Public/app'));
+app.use(express.static(__dirname + '/Public'));
 
 // Routes = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 require('./app/route.js')(app, router, passport);
+
+app.get('*', function(req, res) {
+    res.sendFile('index'); // load the single view file (angular will handle the page changes on the front-end)
+});
 
 // Launch = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 server.listen(82); // Not 80 with MAMP
