@@ -6,7 +6,7 @@ var ListSchema = new mongoose.Schema({
         required: true,
     },
     users: {
-        type:     Array
+        type:     String
     },
     title: {
         type:     String,

@@ -63,18 +63,3 @@ exports.putList = function(req, res) {
         return res.json({message: 'List updated'});
     })
 }
-
-// - - - - - - - - - - - - - - - - - - - -//
-//       /api/list/:list_id/follow        //
-// - - - - - - - - - - - - - - - - - - - -//
-exports.addFollower = function(req, res) {
-    List.findOne({ _id: req.params.list_id }, function(err, list) {
-
-    });
-
-}
-
-
-
-
-

@@ -32,10 +32,6 @@ module.exports = function(app, router, passport) {
         .put(listController.putList)
     ;
 
-    router.route('/list/:list_id/follow')
-        .post(listController.addFollower)
-    ;
-
     // - - - - - - - - - - - - - - - - - - - - //
     //                 T A S K                 //
     // - - - - - - - - - - - - - - - - - - - - //
