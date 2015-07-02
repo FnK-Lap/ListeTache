@@ -1,1 +1,47 @@
-login
+<div class="button-bar">
+    <a ng-click="showLogSign()">
+        Connexion
+    </a>
+    -
+    <a ng-click="showSignLog()">
+        Inscription
+    </a>
+</div>
+<br>
+<form name="porkForm" ng-show="showLogin" ng-submit="loginUser(porkForm)">
+    <div class="list">
+        <label class="item item-input">
+            <input type="text" ng-model="username" placeholder="Username">
+        </label>
+        <label class="item item-input">
+            <input type="text" ng-model="username" placeholder="Password">
+        </label>
+        <input type="submit" ng-disabled="porkForm.$invalid">
+    </div>
+</form>
+<form  name="signForm" ng-show="showSignin" ng-submit="signIn(signForm)">
+    <div class="list">
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Username</span>
+            <input type="text" placeholder="John">
+        </label>
+        <br>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="text" placeholder="John@live.fr">
+        </label>
+        <br>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Password</span>
+            <input type="text" placeholder="*********">
+        </label>
+        <br>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Re Password</span>
+            <input type="text" placeholder="*********">
+        </label>
+        <br>
+        <input type="submit" ng-disabled="signForm.$invalid">
+    </div>
+</form>
+<br>

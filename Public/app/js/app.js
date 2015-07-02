@@ -1,5 +1,6 @@
 var app = angular.module('app',[
     'ngRoute',
+    'ui.bootstrap',
 ]);
 
 
@@ -9,11 +10,20 @@ app.config(['$routeProvider',
             when('/', {
                 templateUrl: 'templates/home.html',
                 controller: 'homeController'
+            }).
+            when('/login', {
+                templateUrl: 'templates/users/login.html',
+                controller: 'loginController'
+            }).
+            when('/addtask', {
+                templateUrl: 'templates/users/addtask.html',
+                controller: 'addtaskController'
             })
 
     }
 ]).run(function($rootScope){
     $rootScope.$on('$routeChangeStart', function(event){
+
 
         //var userData = localStorageService.get('user');
         //
@@ -27,4 +37,5 @@ app.config(['$routeProvider',
         //}
     });
 });
+
 
