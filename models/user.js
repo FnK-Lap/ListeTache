@@ -3,12 +3,12 @@ var bcrypt = require('bcrypt-nodejs');
 
 var UserSchema = new mongoose.Schema({
     username: {
-        type: String,
-        unique: true,
+        type:     String,
+        unique:   true,
         required: true
     },
     password: {
-        type: String,
+        type:     String,
         required: true
     }
 });
@@ -27,7 +27,7 @@ UserSchema.pre('save', function(callback) {
         bcrypt.hash(user.password, salt, null, function(err, hash) {
             if (err) return callback(err);
             user.password = hash;
-            callback();
+            return callback();
         });
     });
 });
@@ -35,7 +35,7 @@ UserSchema.pre('save', function(callback) {
 UserSchema.methods.verifyPassword = function(password, cb) {
     bcrypt.compare(password, this.password, function(err, isMatch) {
         if (err) return cb(err);
-        cb(null, isMatch);
+        return cb(null, isMatch);
     });
 };
 
