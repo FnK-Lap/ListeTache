@@ -1,3 +1,4 @@
+var List = require('../models/list');
 var Task = require('../models/task');
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -22,12 +23,21 @@ exports.postTasks = function(req, res) {
         done:    false
     });
 
-    task.save(function(err) {
+    List.findOne({ _id: req.params.list_id }, function(err, list) {
         if (err)
             return res.send(err);
+        
+        list.tasks.push(task);
+        task.isNew;
 
-        return res.json({ task: task });
-    });
+        list.save(function(err) {
+            if (err)
+                return res.send(err);
+
+            return res.json({ task: task });
+        });
+    })
+
 }
 
 
