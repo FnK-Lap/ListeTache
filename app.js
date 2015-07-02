@@ -37,6 +37,7 @@ app.use(express.static(__dirname + '/Public'));
 
 // Routes = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 require('./app/route.js')(app, router, passport);
+
 app.get('*', function(req, res) {
     res.sendFile('index'); // load the single view file (angular will handle the page changes on the front-end)
 });

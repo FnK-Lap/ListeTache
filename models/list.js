@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Task = require('../models/task');
+var User = require('../models/user');
 
 
 var ListSchema = new mongoose.Schema({
@@ -7,15 +8,7 @@ var ListSchema = new mongoose.Schema({
         type:     String,
         required: true,
     },
-    users: [
-        {
-            id: {
-                type: String,
-                required: true,
-                unique: true
-            }
-        }
-    ],
+    users: [User.schema],
     title: {
         type:     String,
         required: true

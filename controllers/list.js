@@ -69,7 +69,16 @@ exports.putList = function(req, res) {
 // - - - - - - - - - - - - - - - - - - - -//
 exports.addFollower = function(req, res) {
     List.findOne({ _id: req.params.list_id }, function(err, list) {
+        list.users.push(req.user);
 
+        req.user.isNew;
+
+        list.save(function(err) {
+            if (err)
+                return res.send(err);
+
+            return res.json({ list: list});
+        })
     });
 
 }
