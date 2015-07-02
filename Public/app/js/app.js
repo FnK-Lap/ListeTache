@@ -3,7 +3,6 @@ var app = angular.module('app',[
     'ui.bootstrap',
 ]);
 
-
 app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
@@ -23,7 +22,6 @@ app.config(['$routeProvider',
                 templateUrl: 'templates/users/addlist.html',
                 controller: 'addlistController'
             })
-
     }
 ]).run(function($rootScope){
     $rootScope.$on('$routeChangeStart', function(event){
