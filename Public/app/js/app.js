@@ -14,7 +14,7 @@ app.config(['$routeProvider',
                 templateUrl: 'templates/users/login.html',
                 controller: 'loginController'
             }).
-            when('/addtask', {
+            when('/addtask/', {
                 templateUrl: 'templates/users/addtask.html',
                 controller: 'addtaskController'
             }).

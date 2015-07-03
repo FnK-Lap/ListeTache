@@ -1,11 +1,18 @@
-app.controller('homeController', ['$scope', function($scope) {
+app.controller('homeController', ['$scope', 'serverData', function($scope, serverData) {
 
 
-    $scope.objects = [
-        { status:'Important', title: 'Manette PS4', name:'lucas Blanqui', name:'Lucas blanqui', date:'3 Juin 2015 a 8h00', id: 1 },
-        { status:'Normal', title: 'Manette PS4', name:'lucas Blanqui', name:'Lucas blanqui', date:'3 Juin 2015 a 8h00', id: 1 },
+     serverData.get('/api/lists')
+         .success(function (data) {
+            console.log(data);
+            $scope.lists = data;
 
-    ];
-     console.log($scope.objects);
+         });
 
+    $scope.deleteTask = function(id) {
+
+        serverData.delete('api/list/:_id/task/' +id)
+            .success(function(data) {
+               console.log(data);
+           });
+    };
 }]);

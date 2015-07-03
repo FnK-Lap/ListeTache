@@ -1,1 +1,9 @@
-addlist
+<form name="addListForm" ng-submit="addList(addListForm)">
+    <div class="list">
+        <label class="item item-input">
+            <input type="text" ng-model="title" placeholder="add title">
+        </label>
+
+        <input type="submit" ng-disabled="addListForm.$invalid">
+    </div>
+</form>
