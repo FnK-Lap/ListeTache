@@ -8,7 +8,11 @@ var ListSchema = new mongoose.Schema({
         type:     String,
         required: true,
     },
-    users: [User.schema],
+    users: [
+        {
+            id: String
+        }
+    ],
     title: {
         type:     String,
         required: true

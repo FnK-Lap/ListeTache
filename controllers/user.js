@@ -20,7 +20,6 @@ exports.postUsers = function(req, res) {
 
 // GET
 exports.getUsers = function(req, res) {
-    console.log(req.user);
     User.find(function(err, users) {
         if (err)
             return res.send(err);
@@ -34,8 +33,6 @@ exports.getUsers = function(req, res) {
 // - - - - - - - - - - - - - - - //
 // GET
 exports.getUser = function(req, res) {
-    console.log(req.user);
-
      passport.authenticate('local', function(err, user, info) {
     if (err) {
       // if error happens

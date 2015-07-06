@@ -31,7 +31,7 @@ App.config(['$routeProvider',
     $rootScope.$on('$routeChangeStart', function(event) {
         if ($location.path() === '/login' && user.isSignedIn()) {
             $location.path('/');
-        } else if ($location.path() !== '/login' && !user.isSignedIn()) {
+        } else if ($location.path() !== '/login' && $location.path() !== '/register' && !user.isSignedIn()) {
             $location.path('/login');
         };
     });

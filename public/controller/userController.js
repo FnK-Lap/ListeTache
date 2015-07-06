@@ -5,7 +5,6 @@ angular.module('App').controller('userController', ['$scope', 'user', '$location
     }
 
     $scope.loginUser = function (form) {
-        console.log('cc');
         if (form.$valid) {
             user.login($scope.username, $scope.password);
             $location.path('/');
@@ -16,5 +15,12 @@ angular.module('App').controller('userController', ['$scope', 'user', '$location
 
     $scope.logout = function() {
         user.logout();
+    }
+
+    $scope.register = function(form) {
+        if (form.$valid) {
+            user.register($scope.username, $scope.password);
+            $location.path('/');
+        };
     }
 }])

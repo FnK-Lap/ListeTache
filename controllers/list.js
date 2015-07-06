@@ -54,13 +54,9 @@ exports.deleteList = function(req, res) {
 
 // PUT
 exports.putList = function(req, res) {
-    List.update({ _id: req.params.list_id }, { 
-        title: req.body.title, 
-    }, function(err) {
-        if (err)
-            return res.send(err);
-
-        return res.json({message: 'List updated'});
+    List.findOne({ _id: req.params.list_id }, function(err, list) {
+        list.title = req.body.title;
+        list.save();
     })
 }
 
@@ -69,9 +65,7 @@ exports.putList = function(req, res) {
 // - - - - - - - - - - - - - - - - - - - -//
 exports.addFollower = function(req, res) {
     List.findOne({ _id: req.params.list_id }, function(err, list) {
-        list.users.push(req.user);
-
-        req.user.isNew;
+        list.users.push(req.user._id);
 
         list.save(function(err) {
             if (err)

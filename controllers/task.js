@@ -6,7 +6,6 @@ var Task = require('../models/task');
 // - - - - - - - - - - - - - - - - - - - - - - - - - //
 // GET
 exports.getTasks = function(req, res) {
-    console.log(req.user);
     Task.find({ list: req.params.list_id }, function(err, tasks) {
         if (err)
             return res.send(err);
@@ -56,23 +55,28 @@ exports.getTask = function(req, res) {
 
 // DELETE
 exports.deleteTask = function(req, res) {
-    Task.remove({ _id: req.params.task_id, list: req.params.list_id }, function(err) {
-        if (err)
-            return res.send(err);
+    List.findOne({ _id: req.params.list_id }, function(err, list) {
+        list.tasks.id(req.params.task_id).remove();
+        list.save(function(err) {
+            if (err)
+                return res.send(err);
 
-        return res.json({message: 'Task deleted'});
+            return res.json({message: 'Task deleted'});
+        })
     })
 }
 
 // PUT
 exports.putTask = function(req, res) {
-    Task.update({ _id: req.params.task_id, list: req.params.list_id }, { 
-        content: req.body.content,
-        done:    req.body.done
-    }, function(err) {
+    List.findOneAndUpdate({ _id: req.body.list, "tasks._id": req.body._id }, {
+        "$set": {
+            "tasks.$.done": req.body.done,
+            "tasks.$.content": req.body.content
+        }
+
+    },function(err,doc) {
         if (err)
             return res.send(err);
-
-        return res.json({message: 'Task updated'});
+        return res.json(doc);
     })
 }

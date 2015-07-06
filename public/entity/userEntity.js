@@ -26,15 +26,11 @@ angular.module('App').factory('user', ['localStorageService', '$location', 'http
             password: password,
         };
 
-        http.post('/api/login', {username: username, password:password})
+        http.post('/api/login', userEntity)
             .success(function(data) {
-
-                console.log('success entity');
-            })
-            .error(function(data, cc, hey, yop) {
-                console.log('error entity');
+                localStorageService.set('user', userEntity);
+                return $location.path('/');
             });
-        // localStorageService.set('user', userEntity);
     }
 
     userEntity.logout = function() {
@@ -42,6 +38,18 @@ angular.module('App').factory('user', ['localStorageService', '$location', 'http
         userEntity = null;
         // console.log('logout');
         return $location.path('/user/login');
+    }
+
+    userEntity.register = function(username, password) {
+        userEntity = {
+            username: username,
+            password: password,
+        };
+
+        http.post('/api/users', userEntity)
+            .success(function(data) {
+                return $location.path('/');
+            });
     }
 
     userEntity.isSignedIn = function() {

@@ -32,8 +32,8 @@ app.use(passport.session());
 
 
 app.use('/api', router); // /api for all routes
-app.use(express.static(__dirname + '/Public/app'));
-app.use(express.static(__dirname + '/Public'));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/node_modules'));
 
 // Routes = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 require('./app/route.js')(app, router, passport);

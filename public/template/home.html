@@ -1,1 +1,67 @@
 <button ng-controller='userController' ng-click='logout()'>Logout</button>
+<h4>Add List</h4>
+<form name="newListForm" ng-submit="addList(newListForm)">
+    <div class="list">
+        <label class="item item-input">
+            <input type="text" ng-model="title" placeholder="title">
+        </label>
+        <input type="submit" ng-disabled="newListForm.$invalid">
+    </div>
+</form>
+
+<h3>Lists</h3>
+<div ng-repeat="list in lists">
+    <fieldset>
+        <h2>{{ list.title }}</h2>
+        <button ng-click='showEditList = !showEditList'>Edit List</button>
+        <button ng-click='deleteList(list._id)'>Delete List</button>
+        <button ng-click='followList(list._id)'>Follow List</button>
+
+        <form name='editListForm' ng-submit='editList(editListForm, list)' ng-show='showEditList'>
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" ng-model="$parent.editTitle" placeholder="{{list.title}}">
+                </label>
+                <input type="submit" ng-disabled="editListForm.$invalid">
+            </div>
+        </form>
+
+        <h4>Add Task</h4>
+        <form name="newTaskForm" ng-submit="addTask(newTaskForm, list._id)">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" ng-model="$parent.content" placeholder="content">
+                </label>
+                <input type="submit" ng-disabled="newTaskForm.$invalid">
+            </div>
+        </form>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Content</th>
+                  <th>Option</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="task in list.tasks">
+                <tr>
+                    <th>{{ task.done }}</th>
+                    <td>{{ task.content }}</td>
+                    <td>
+                        <a ng-click="deleteTask(list._id, task._id)">delete</a> - 
+                        <a ng-click='showEditTask = !showEditTask'>update</a> - 
+                        <a ng-click='doneTask(task)'>Done</a>
+                        <form name='editTaskForm' ng-submit='editTask(editTaskForm, task)' ng-show='showEditTask'>
+                            <div class="list">
+                                <label class="item item-input">
+                                    <input type="text" ng-model="$parent.$parent.editContent" placeholder="{{task.content}}">
+                                </label>
+                                <input type="submit" ng-disabled="editTaskForm.$invalid">
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</div>

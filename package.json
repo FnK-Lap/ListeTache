@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/FnK-Lap/ListeTache",
   "dependencies": {
+    "angular": "^1.4.1",
+    "angular-local-storage": "^0.2.2",
+    "angular-route": "^1.4.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
